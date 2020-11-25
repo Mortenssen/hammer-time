@@ -11,6 +11,10 @@ public class DragDropScript : MonoBehaviour
     Vector3 offsetValue;
     Vector3 positionOfScreen;
 
+    bool isDragIngredient;
+
+    GameObject spawnedIngredient;
+
     // Use this for initialization
     void Start()
     {
@@ -30,7 +34,17 @@ public class DragDropScript : MonoBehaviour
                 if(getTarget.CompareTag("Ingredient"))
                 {
                     isMouseDragging = true;
+                    isDragIngredient = true;
+                    spawnedIngredient = getTarget;
                     //Converting world position to screen position.
+                    positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
+                    offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
+                }
+                else if(getTarget.CompareTag("IngredientSpawner"))
+                {
+                    isMouseDragging = true;
+                    isDragIngredient = true;
+                    spawnedIngredient = Instantiate(getTarget.GetComponent<SpawnIngredient>().ingredientToSpawn);
                     positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
                     offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
                 }
@@ -41,22 +55,28 @@ public class DragDropScript : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isMouseDragging = false;
+            isDragIngredient = false;
         }
 
         //Is mouse Moving
         if (isMouseDragging)
         {
-            //tracking mouse position.
-            Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z);
-
-            //converting screen position to world position with offset changes.
-            Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenSpace) + offsetValue;
-
-            //It will update target gameobject's current postion.
-            getTarget.transform.position = currentPosition;
+            if (isDragIngredient) { MouseDrag(spawnedIngredient.transform); }
+            
         }
+    }
 
+    public void MouseDrag(Transform ingredient)
+    {
+        //tracking mouse position.
+        Vector3 currentScreenSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z);
 
+        //converting screen position to world position with offset changes.
+        Vector3 currentPosition = Camera.main.ScreenToWorldPoint(currentScreenSpace) + offsetValue;
+
+        //It will update target gameobject's current postion.
+        ingredient.transform.position = currentPosition;
+        //getTarget.transform.position = currentPosition;
     }
 
     //Method to Return Clicked Object

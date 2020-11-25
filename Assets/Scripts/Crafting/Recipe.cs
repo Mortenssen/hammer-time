@@ -9,12 +9,13 @@ public class Recipe
 
     public GameObject modelOutput;
 
-    public enum IngredientNumber { Two, Three, Four };
+    public enum HammerHit { LightHit, HeavyHit };
+    public HammerHit hammerHit;
 
+    public enum IngredientNumber { Two, Three, Four };
     public IngredientNumber numberOfIngredients;
 
     public enum IngredientName { Nails, Glue, Tape, Battery };
-
     public IngredientName firstIngredientName;
     public IngredientName secondIngredientName;
     public IngredientName thirdIngredientName;

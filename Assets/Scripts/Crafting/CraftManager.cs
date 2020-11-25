@@ -65,11 +65,11 @@ public class CraftManager : MonoBehaviour
         {
             bool first = false;
             bool second = false;
-            if(currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+            if((currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString()) || (currentRecipe[0].firstIngredientName.ToString() == ingredients[1].ingredientName.ToString()))
             {
                 first = true;
             }
-            if(currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+            if((currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString()) || (currentRecipe[0].secondIngredientName.ToString() == ingredients[0].ingredientName.ToString()))
             {
                 second = true;
             }

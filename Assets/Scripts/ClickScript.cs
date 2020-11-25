@@ -17,6 +17,8 @@ public class ClickScript : MonoBehaviour
 
     public List<GameObject> ingredientsList = new List<GameObject>();
 
+    public List<GameObject> allIngredients = new List<GameObject>();
+
     // Use this for initialization
     void Start()
     {
