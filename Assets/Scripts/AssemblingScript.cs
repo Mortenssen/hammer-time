@@ -37,38 +37,11 @@ public class AssemblingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(ingredient1 && ingredient2 && ingredient3)
-        //{
-            if(!recipeComplete && recipeIngredients.Count > 1)
-            {
-                //StartCoroutine(Assembling());
-                craftManager.RecipeIngredients(recipeIngredients);
-            }
-        //}
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        /*if(other.gameObject.layer == 8 && !ingredient1)
+        if(!recipeComplete && recipeIngredients.Count > 1)
         {
-            ingredient1 = true;
-            ingredient1Object = other.gameObject;
-            recipeIngredients.Add(ingredient1Object.GetComponent<Ingredient>());
-            Debug.Log("1In");
-        }     
-        if(other.gameObject.layer == 9 && !ingredient2)
-        {
-            ingredient2 = true;
-            ingredient2Object = other.gameObject;
-            recipeIngredients.Add(ingredient2Object.GetComponent<Ingredient>());
-            Debug.Log("2In");
-        }     
-        if(other.gameObject.layer == 10 && !ingredient3)
-        {
-            ingredient3 = true;
-            ingredient3Object = other.gameObject;
-            recipeIngredients.Add(ingredient3Object.GetComponent<Ingredient>());
-            Debug.Log("3In");
-        }*/
+            //StartCoroutine(Assembling());
+            craftManager.RecipeIngredients(recipeIngredients);
+        }
     }
 
     public void OnTriggerEnter(Collider other)
