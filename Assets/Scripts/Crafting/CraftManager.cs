@@ -41,7 +41,6 @@ public class CraftManager : MonoBehaviour
         currentRecipeIngredients.Add(currentRecipe[0].thirdIngredientName.ToString());
         currentRecipeIngredients.Add(currentRecipe[0].fourthIngredientName.ToString());
 
-
         recievedRecipeIngredients = ingredients;
 
         if(Input.GetKeyDown(KeyCode.Space))
@@ -61,15 +60,17 @@ public class CraftManager : MonoBehaviour
 
     public bool CompareToRecipe(List<Ingredient> ingredients)
     {
-        if(currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Two)
+        if(currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Two && ingredients.Count == 2)
         {
             bool first = false;
             bool second = false;
-            if((currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString()) || (currentRecipe[0].firstIngredientName.ToString() == ingredients[1].ingredientName.ToString()))
+            if((currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString()) 
+                || (currentRecipe[0].firstIngredientName.ToString() == ingredients[1].ingredientName.ToString()))
             {
                 first = true;
             }
-            if((currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString()) || (currentRecipe[0].secondIngredientName.ToString() == ingredients[0].ingredientName.ToString()))
+            if((currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString()) 
+                || (currentRecipe[0].secondIngredientName.ToString() == ingredients[0].ingredientName.ToString()))
             {
                 second = true;
             }
@@ -84,20 +85,26 @@ public class CraftManager : MonoBehaviour
             }
         }
 
-        if (currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Three)
+        if (currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Three && ingredients.Count == 3)
         {
             bool first = false;
             bool second = false;
             bool third = false;
-            if (currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+            if ((currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+                || (currentRecipe[0].firstIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].firstIngredientName.ToString() == ingredients[2].ingredientName.ToString()))
             {
                 first = true;
             }
-            if (currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+            if ((currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].secondIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+                || (currentRecipe[0].secondIngredientName.ToString() == ingredients[2].ingredientName.ToString()))
             {
                 second = true;
             }
-            if (currentRecipe[0].thirdIngredientName.ToString() == ingredients[2].ingredientName.ToString())
+            if ((currentRecipe[0].thirdIngredientName.ToString() == ingredients[2].ingredientName.ToString())
+                || (currentRecipe[0].thirdIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].thirdIngredientName.ToString() == ingredients[0].ingredientName.ToString()))
             {
                 third = true;
             }
@@ -112,25 +119,37 @@ public class CraftManager : MonoBehaviour
             }
         }
 
-        if (currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Four)
+        if (currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Four && ingredients.Count == 4)
         {
             bool first = false;
             bool second = false;
             bool third = false;
             bool fourth = false;
-            if (currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+            if ((currentRecipe[0].firstIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+                || (currentRecipe[0].firstIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].firstIngredientName.ToString() == ingredients[2].ingredientName.ToString())
+                || (currentRecipe[0].firstIngredientName.ToString() == ingredients[3].ingredientName.ToString()))
             {
                 first = true;
             }
-            if (currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+            if ((currentRecipe[0].secondIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].secondIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+                || (currentRecipe[0].secondIngredientName.ToString() == ingredients[2].ingredientName.ToString())
+                || (currentRecipe[0].secondIngredientName.ToString() == ingredients[3].ingredientName.ToString()))
             {
                 second = true;
             }
-            if (currentRecipe[0].thirdIngredientName.ToString() == ingredients[2].ingredientName.ToString())
+            if ((currentRecipe[0].thirdIngredientName.ToString() == ingredients[2].ingredientName.ToString())
+                || (currentRecipe[0].thirdIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].thirdIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+                || (currentRecipe[0].thirdIngredientName.ToString() == ingredients[3].ingredientName.ToString()))
             {
                 third = true;
             }
-            if (currentRecipe[0].fourthIngredientName.ToString() == ingredients[3].ingredientName.ToString())
+            if ((currentRecipe[0].fourthIngredientName.ToString() == ingredients[3].ingredientName.ToString())
+                || (currentRecipe[0].fourthIngredientName.ToString() == ingredients[0].ingredientName.ToString())
+                || (currentRecipe[0].fourthIngredientName.ToString() == ingredients[1].ingredientName.ToString())
+                || (currentRecipe[0].fourthIngredientName.ToString() == ingredients[2].ingredientName.ToString()))
             {
                 fourth = true;
             }

@@ -59,13 +59,13 @@
     <Compile Include="Assets\Scripts\Crafting\Recipe.cs" />
     <Compile Include="Assets\Scripts\ClickScript.cs" />
     <Compile Include="Assets\Scripts\Crafting\CraftManager.cs" />
+    <Compile Include="Assets\Scripts\SpawnIngredient.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\AssemblingScript.cs" />
     <Compile Include="Assets\Scripts\Crafting\Ingredient.cs" />
     <Compile Include="Assets\Scripts\Crafting\Product.cs" />
     <Compile Include="Assets\Scripts\DragDropScript.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\SpawnIngredient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
