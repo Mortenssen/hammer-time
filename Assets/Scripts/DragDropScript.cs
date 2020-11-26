@@ -7,11 +7,13 @@ public class DragDropScript : MonoBehaviour
 
     //Initialize Variables
     GameObject getTarget;
-    bool isMouseDragging;
+    public bool isMouseDragging;
     Vector3 offsetValue;
     Vector3 positionOfScreen;
 
     bool isDragIngredient;
+
+    public bool canDrag = true;
 
     GameObject spawnedIngredient;
 
@@ -59,7 +61,7 @@ public class DragDropScript : MonoBehaviour
         }
 
         //Is mouse Moving
-        if (isMouseDragging)
+        if (isMouseDragging && canDrag)
         {
             if (isDragIngredient) { MouseDrag(spawnedIngredient.transform); }
             

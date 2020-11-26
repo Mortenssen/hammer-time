@@ -26,10 +26,46 @@ public class CraftManager : MonoBehaviour
         recipes.Remove(recipes[0]);
     }
 
+    public void RecieveHit(int hitQuantity, bool isLightHit)
+    {
+        if(isLightHit && currentRecipe[0].hammerHit == Recipe.HammerHit.LightHit)
+        {
+            currentRecipe[0].currentHits += hitQuantity;
+        }
+        else if(!isLightHit && currentRecipe[0].hammerHit == Recipe.HammerHit.HeavyHit)
+        {
+            currentRecipe[0].currentHits += hitQuantity;
+        }
+        else
+        {
+            for (int i = 0; i < recievedRecipeIngredients.Count; i++)
+            {
+                Destroy(recievedRecipeIngredients[i].gameObject);
+            }
+            recievedRecipeIngredients.Clear();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentRecipe[0].currentHits >= currentRecipe[0].hitsRequired)
+        {
+            for (int i = 0; i < recievedRecipeIngredients.Count; i++)
+            {
+                Destroy(recievedRecipeIngredients[i].gameObject);
+            }
+            recievedRecipeIngredients.Clear();
+            if (recievedRecipeIngredients.Count == 0)
+            {
+                currentRecipe.Remove(currentRecipe[0]);
+                if(recipes.Count > 0)
+                {
+                    currentRecipe.Add(recipes[0]);
+                    recipes.Remove(recipes[0]);
+                }                
+            }
+        }
     }
 
     public void RecipeIngredients(List<Ingredient> ingredients)
@@ -43,19 +79,18 @@ public class CraftManager : MonoBehaviour
 
         recievedRecipeIngredients = ingredients;
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            canCraft = CompareToRecipe(recievedRecipeIngredients);
 
-            if (canCraft)
-            {
-                Debug.Log("YAY WE CRAFTING MATE!!!");
-            }
-            else
-            {
-                Debug.Log("We fked up somewhere");
-            }
+        canCraft = CompareToRecipe(recievedRecipeIngredients);
+
+        if (canCraft)
+        {
+            Debug.Log("YAY WE CRAFTING MATE!!!");
         }
+        else
+        {
+            Debug.Log("We fked up somewhere");
+        }
+        
     }
 
     public bool CompareToRecipe(List<Ingredient> ingredients)
