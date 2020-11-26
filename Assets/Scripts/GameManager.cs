@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public List<GameObject> PNJList = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -12,6 +14,17 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Instantiate(PNJList[Random.Range(0, PNJList.Count)]);
+=======
+    public static GameManager current;
+
+    public Text hammerLvlTxt;
+    public int hammerLevel;
+    private int hammerMaxLevel = 3;
+
+    private void Awake()
+    {
+        current = this;
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -30,6 +43,19 @@ public class GameManager : MonoBehaviour
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public void HammerLevelUpdate()
+    {
+        if(hammerLevel < hammerMaxLevel)
+        {
+            hammerLevel += 1;
+            hammerLvlTxt.text = "Hammer Level : " + hammerLevel;
+        }
+        else
+        {
+            Debug.Log("Hammer already at max level");
         }
     }
 }

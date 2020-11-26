@@ -13,6 +13,9 @@ public class Recipe
 
     public IngredientNumber numberOfIngredients;
 
+    public enum HitNumber { Four = 4, Five = 5, Six = 6, Seven = 7, Eight = 8}
+    public HitNumber hitNumber;
+
     public enum IngredientName { Nails, Glue, Tape, Battery };
 
     public IngredientName firstIngredientName;
@@ -33,6 +36,14 @@ public class Recipe
         else if (numberOfIngredients == IngredientNumber.Four)
         {
             
+        }
+        if(hammerHit == HammerHit.LightHit)
+        {
+
+        }
+        else if(hammerHit == HammerHit.HeavyHit)
+        {
+
         }
     }
 

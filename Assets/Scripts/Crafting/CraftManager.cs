@@ -13,6 +13,7 @@ public class CraftManager : MonoBehaviour
     public List<Ingredient> recievedRecipeIngredients = new List<Ingredient>();
 
     public bool canCraft = false;
+    private int nbOfHit = 0;
 
     private void Awake()
     {
@@ -22,8 +23,9 @@ public class CraftManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentRecipe.Add(recipes[0]);
-        recipes.Remove(recipes[0]);
+        int recipeNumber = Random.Range(0, recipes.Count);
+        currentRecipe.Add(recipes[recipeNumber]);
+        recipes.Remove(recipes[recipeNumber]);
     }
 
     // Update is called once per frame
@@ -44,13 +46,64 @@ public class CraftManager : MonoBehaviour
 
         recievedRecipeIngredients = ingredients;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             canCraft = CompareToRecipe(recievedRecipeIngredients);
 
             if (canCraft)
             {
-                Debug.Log("YAY WE CRAFTING MATE!!!");
+                if (currentRecipe[0].hammerHit == Recipe.HammerHit.LightHit)
+                {
+                    nbOfHit += 1;
+                    if (nbOfHit == (int)currentRecipe[0].hitNumber - GameManager.current.hammerLevel)
+                    {
+                        nbOfHit = 0;
+                        Debug.Log("Finnally Crafted");
+                        int recipeNumber = Random.Range(0, recipes.Count);
+                        currentRecipe.Remove(currentRecipe[0]);
+                        currentRecipe.Add(recipes[recipeNumber]);
+                        recipes.Remove(recipes[0]);
+                    }
+                    else
+                    {
+                        Debug.Log("YAY WE CRAFTING MATE!!!");
+                        Debug.Log("HIT MORE !");
+                    }
+                }
+                else
+                { Debug.Log("Wrong Hit"); }
+            }
+            else
+            {
+                Debug.Log("We fked up somewhere");
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            canCraft = CompareToRecipe(recievedRecipeIngredients);
+
+            if (canCraft)
+            {
+                if (currentRecipe[0].hammerHit == Recipe.HammerHit.HeavyHit)
+                {
+                    nbOfHit += 1;
+                    if (nbOfHit == (int)currentRecipe[0].hitNumber - GameManager.current.hammerLevel)
+                    {
+                        nbOfHit = 0;
+                        Debug.Log("Finnally Crafted");
+                        int recipeNumber = Random.Range(0, recipes.Count);
+                        currentRecipe.Remove(currentRecipe[0]);
+                        currentRecipe.Add(recipes[recipeNumber]);
+                        recipes.Remove(recipes[0]);
+                    }
+                    else
+                    {
+                        Debug.Log("YAY WE CRAFTING MATE!!!");
+                        Debug.Log("HIT MORE !");
+                    }
+                }
+                else
+                { Debug.Log("Wrong Hit"); }
             }
             else
             {
@@ -58,7 +111,6 @@ public class CraftManager : MonoBehaviour
             }
         }
     }
-
     public bool CompareToRecipe(List<Ingredient> ingredients)
     {
         if(currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Two)
