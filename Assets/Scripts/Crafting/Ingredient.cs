@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-    public enum IngredientName { Nails, Glue, Tape, Battery };
+    public enum IngredientName { Nails, Glue, DuctTape, Crystal, Wires, Eyeball };
     public IngredientName ingredientName;
-
-    public enum HammerHit { LightHit, HeavyHit };
-    public HammerHit hammerHit;
-
-
 }

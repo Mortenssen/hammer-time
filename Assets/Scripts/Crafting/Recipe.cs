@@ -12,10 +12,13 @@ public class Recipe
     public enum HammerHit { LightHit, HeavyHit };
     public HammerHit hammerHit;
 
+    public int hitsRequired = 8;
+    public int currentHits = 0;
+
     public enum IngredientNumber { Two, Three, Four };
     public IngredientNumber numberOfIngredients;
 
-    public enum IngredientName { Nails, Glue, Tape, Battery };
+    public enum IngredientName { Nails, Glue, DuctTape, Crystal, Wires, Eyeball };
     public IngredientName firstIngredientName;
     public IngredientName secondIngredientName;
     public IngredientName thirdIngredientName;
