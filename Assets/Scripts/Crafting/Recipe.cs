@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class Recipe
@@ -8,6 +9,7 @@ public class Recipe
     public string recipeName = "Recipe";
 
     public GameObject modelOutput;
+    public Sprite outputImage;
 
     public enum HammerHit { LightHit, HeavyHit };
     public HammerHit hammerHit;
@@ -18,7 +20,7 @@ public class Recipe
     public enum IngredientNumber { Two, Three, Four };
     public IngredientNumber numberOfIngredients;
 
-    public enum IngredientName { Nails, Glue, DuctTape, Crystal, Wires, Eyeball };
+    public enum IngredientName { Nails, Glue, DuctTape, Crystal, Wires, Eyeball, Alien, Antimatter, Metal, Pipe };
     public IngredientName firstIngredientName;
     public IngredientName secondIngredientName;
     public IngredientName thirdIngredientName;

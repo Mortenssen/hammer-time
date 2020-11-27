@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftManager : MonoBehaviour
 {
@@ -12,6 +13,24 @@ public class CraftManager : MonoBehaviour
     public List<string> currentRecipeIngredients = new List<string>();
     public List<Ingredient> recievedRecipeIngredients = new List<Ingredient>();
 
+    public Transform productSpawn;
+
+    Hammer hammerTool;
+
+    public Image outputImage;
+    public Image[] ingredientsImages;
+
+    public Sprite nailsImage;
+    public Sprite glueImage;
+    public Sprite ductTapeImage;
+    public Sprite crystalImage;
+    public Sprite wiresImage;
+    public Sprite eyeballImage;
+    public Sprite alienImage;
+    public Sprite antimatterImage;
+    public Sprite metalImage;
+    public Sprite pipeImage;
+
     public bool canCraft = false;
 
     private void Awake()
@@ -22,6 +41,7 @@ public class CraftManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hammerTool = GameObject.Find("HammerTool").GetComponent<Hammer>();
         currentRecipe.Add(recipes[0]);
         recipes.Remove(recipes[0]);
     }
@@ -46,18 +66,75 @@ public class CraftManager : MonoBehaviour
         }
     }
 
+    void SetImages()
+    {
+        if(currentRecipe.Count != 0)
+        {
+            outputImage.sprite = currentRecipe[0].outputImage;
+
+            for (int i = 0; i < currentRecipeIngredients.Count; i++)
+            {
+                switch (currentRecipeIngredients[i])
+                {
+                    case "Nails":
+                        ingredientsImages[i].sprite = nailsImage;
+                        break;
+                    case "Glue":
+                        ingredientsImages[i].sprite = glueImage;
+                        break;
+                    case "DuctTape":
+                        ingredientsImages[i].sprite = ductTapeImage;
+                        break;
+                    case "Crystal":
+                        ingredientsImages[i].sprite = crystalImage;
+                        break;
+                    case "Wires":
+                        ingredientsImages[i].sprite = wiresImage;
+                        break;
+                    case "Eyeball":
+                        ingredientsImages[i].sprite = eyeballImage;
+                        break;
+                    case "Alien":
+                        ingredientsImages[i].sprite = alienImage;
+                        break;
+                    case "Antimatter":
+                        ingredientsImages[i].sprite = antimatterImage;
+                        break;
+                    case "Metal":
+                        ingredientsImages[i].sprite = metalImage;
+                        break;
+                    case "Pipe":
+                        ingredientsImages[i].sprite = pipeImage;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
+        SetImages();
+
         if(currentRecipe[0].currentHits >= currentRecipe[0].hitsRequired)
         {
+            Instantiate(currentRecipe[0].modelOutput, productSpawn.position, productSpawn.rotation);
             for (int i = 0; i < recievedRecipeIngredients.Count; i++)
             {
-                Destroy(recievedRecipeIngredients[i].gameObject);
+                if(recievedRecipeIngredients[i] != null)
+                {
+                    Destroy(recievedRecipeIngredients[i].gameObject);
+                }
+                
             }
             recievedRecipeIngredients.Clear();
             if (recievedRecipeIngredients.Count == 0)
             {
+                canCraft = false;
                 currentRecipe.Remove(currentRecipe[0]);
                 if(recipes.Count > 0)
                 {
@@ -67,7 +144,6 @@ public class CraftManager : MonoBehaviour
             }
         }
     }
-
     public void RecipeIngredients(List<Ingredient> ingredients)
     {
         currentRecipeIngredients.Clear();
@@ -156,6 +232,7 @@ public class CraftManager : MonoBehaviour
 
         if (currentRecipe[0].numberOfIngredients == Recipe.IngredientNumber.Four && ingredients.Count == 4)
         {
+            Debug.Log("i enter here");
             bool first = false;
             bool second = false;
             bool third = false;
