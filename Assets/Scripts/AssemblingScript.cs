@@ -37,7 +37,7 @@ public class AssemblingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!recipeComplete && recipeIngredients.Count > 1)
+        if(!recipeComplete) //&& recipeIngredients.Count > 0)
         {
             //StartCoroutine(Assembling());
             craftManager.RecipeIngredients(recipeIngredients);

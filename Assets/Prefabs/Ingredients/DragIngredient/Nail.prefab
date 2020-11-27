@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientName: 0
-  hammerHit: 1
+  audioClip: {fileID: 8300000, guid: ed67bfbf77a55f048a04ce44d6df63fc, type: 3}
 --- !u!65 &737308613745668649
 BoxCollider:
   m_ObjectHideFlags: 0

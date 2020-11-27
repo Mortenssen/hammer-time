@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientName: 4
+  audioClip: {fileID: 8300000, guid: 91b2530655eff58409cd3ea03feb6294, type: 3}

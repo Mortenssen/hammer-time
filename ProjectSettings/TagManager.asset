@@ -8,6 +8,8 @@ TagManager:
   - PNJ
   - IngredientSpawner
   - CraftManager
+  - Product
+  - Hammer
   layers:
   - Default
   - TransparentFX

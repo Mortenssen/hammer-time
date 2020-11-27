@@ -15,9 +15,14 @@ public class Hammer : MonoBehaviour
 
     public bool canHammer = true;
 
+    public int hammerLevel = 1;
+
     // Start is called before the first frame update
     void Start()
     {
+        hammerLevel = PlayerPrefs.GetInt("HammerLevel", 1);
+
+
         craftManager = GameObject.FindGameObjectWithTag("CraftManager").GetComponent<CraftManager>();
         dragScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DragDropScript>();
         animator = GetComponent<Animator>();
@@ -47,6 +52,8 @@ public class Hammer : MonoBehaviour
     {
         if(!canHammer) { return; }
 
+        if(craftManager.recievedRecipeIngredients.Count == 0) { return; }
+
         if(Input.GetKeyDown(KeyCode.Q))
         {            
             if(craftManager.canCraft)
@@ -55,7 +62,7 @@ public class Hammer : MonoBehaviour
                 animator.SetTrigger("L_Hit");
                 dragScript.canDrag = false;
                 dragScript.isMouseDragging = false;
-                craftManager.RecieveHit(1, true);
+                craftManager.RecieveHit(hammerLevel, true);
             }            
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -66,7 +73,7 @@ public class Hammer : MonoBehaviour
                 animator.SetTrigger("H_Hit");
                 dragScript.canDrag = false;
                 dragScript.isMouseDragging = false;
-                craftManager.RecieveHit(1, false);
+                craftManager.RecieveHit(hammerLevel, false);
             }
         }
     }

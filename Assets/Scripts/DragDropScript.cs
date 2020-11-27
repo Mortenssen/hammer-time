@@ -13,14 +13,18 @@ public class DragDropScript : MonoBehaviour
 
     bool isDragIngredient;
 
+    AudioSource audioSource;
+
     public bool canDrag = true;
 
     GameObject spawnedIngredient;
 
+    [SerializeField] AudioClip clipToPlay;
+
     // Use this for initialization
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -33,11 +37,25 @@ public class DragDropScript : MonoBehaviour
             getTarget = ReturnClickedObject(out hitInfo);
             if (getTarget != null)
             {
+                if(getTarget.CompareTag("Hammer"))
+                {
+                    isMouseDragging = true;
+                    isDragIngredient = true;
+                    spawnedIngredient = getTarget;
+                    //Converting world position to screen position.
+                    positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
+                    offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
+                }
+
                 if(getTarget.CompareTag("Ingredient"))
                 {
                     isMouseDragging = true;
                     isDragIngredient = true;
                     spawnedIngredient = getTarget;
+                    
+                    clipToPlay = spawnedIngredient.GetComponent<Ingredient>().audioClip;
+                    if(clipToPlay != null) { audioSource.PlayOneShot(clipToPlay); }
+                    
                     //Converting world position to screen position.
                     positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
                     offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
@@ -47,6 +65,10 @@ public class DragDropScript : MonoBehaviour
                     isMouseDragging = true;
                     isDragIngredient = true;
                     spawnedIngredient = Instantiate(getTarget.GetComponent<SpawnIngredient>().ingredientToSpawn);
+                    
+                    clipToPlay = spawnedIngredient.GetComponent<Ingredient>().audioClip;
+                    if (clipToPlay != null) { audioSource.PlayOneShot(clipToPlay); }
+
                     positionOfScreen = Camera.main.WorldToScreenPoint(getTarget.transform.position);
                     offsetValue = getTarget.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, positionOfScreen.z));
                 }
