@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public List<GameObject> PNJList = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour
         Instantiate(PNJList[Random.Range(0, PNJList.Count)]);
 =======
     public static GameManager current;
+=======
+    public float levelTime = 120.0f;
+    public float timeLeft;
+>>>>>>> Stashed changes
 
     public Text hammerLvlTxt;
     public int hammerLevel;
@@ -56,6 +61,11 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Hammer already at max level");
+        }
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            MoneyCount.current.GiveMoney(Random.Range(70, 151));
         }
     }
 }

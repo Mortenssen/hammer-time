@@ -31,7 +31,36 @@ public class CraftManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         
+=======
+        SetImages();
+
+        if(currentRecipe[0].currentHits >= currentRecipe[0].hitsRequired - MoneyCount.current.hammerLvl)
+        {
+            Instantiate(currentRecipe[0].modelOutput, productSpawn.position, productSpawn.rotation);
+            MoneyCount.current.GiveMoney(Random.Range(70, 151));
+            for (int i = 0; i < recievedRecipeIngredients.Count; i++)
+            {
+                if(recievedRecipeIngredients[i] != null)
+                {
+                    Destroy(recievedRecipeIngredients[i].gameObject);
+                }
+                
+            }
+            recievedRecipeIngredients.Clear();
+            if (recievedRecipeIngredients.Count == 0)
+            {
+                canCraft = false;
+                currentRecipe.Remove(currentRecipe[0]);
+                if(recipes.Count > 0)
+                {
+                    currentRecipe.Add(recipes[0]);
+                    recipes.Remove(recipes[0]);
+                }                
+            }
+        }
+>>>>>>> Stashed changes
     }
 
     public void RecipeIngredients(List<Ingredient> ingredients)
