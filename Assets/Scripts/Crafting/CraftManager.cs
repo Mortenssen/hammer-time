@@ -122,6 +122,7 @@ public class CraftManager : MonoBehaviour
 
         if(currentRecipe[0].currentHits >= currentRecipe[0].hitsRequired)
         {
+            if (CustomEvents.OutputCrafted !=null) CustomEvents.OutputCrafted();
             Instantiate(currentRecipe[0].modelOutput, productSpawn.position, productSpawn.rotation);
             for (int i = 0; i < recievedRecipeIngredients.Count; i++)
             {
@@ -160,7 +161,7 @@ public class CraftManager : MonoBehaviour
 
         if (canCraft)
         {
-            Debug.Log("YAY WE CRAFTING MATE!!!");
+            Debug.Log("YAY WE CRAFTING MATE!!!");            
         }
         else
         {

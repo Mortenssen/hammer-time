@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 2338974932893076151}
   m_Layer: 0
   m_Name: AmmoBox
-  m_TagString: Ingredient
+  m_TagString: Product
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

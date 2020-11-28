@@ -26,6 +26,8 @@ public class Recipe
     public IngredientName thirdIngredientName;
     public IngredientName fourthIngredientName;
 
+    public int reward = 100;
+
     public void Craft()
     {
         if (numberOfIngredients == IngredientNumber.Two)

@@ -37,7 +37,7 @@ public class DragDropScript : MonoBehaviour
             getTarget = ReturnClickedObject(out hitInfo);
             if (getTarget != null)
             {
-                if(getTarget.CompareTag("Hammer"))
+                if(getTarget.CompareTag("Hammer") || (getTarget.CompareTag("Product")))
                 {
                     isMouseDragging = true;
                     isDragIngredient = true;
